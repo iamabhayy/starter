@@ -10,7 +10,7 @@ class LoginViewModel extends BaseViewModel {
       locator<FirebaseAuthenticationService>();
   final NavigationService navigator = locator<NavigationService>();
 
-  User? get getUser => FirebaseAuth.instance.currentUser;
+  User? get getUser => _auth.firebaseAuth.currentUser;
 
   String? get getUserName =>
       (getUser != null) ? getUser!.displayName : "to Study Hunt!";
