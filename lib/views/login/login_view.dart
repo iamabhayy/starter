@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 import 'package:starter/configs/constants.dart';
 
 import 'login_viewmodel.dart';
@@ -105,9 +104,7 @@ class LoginView extends StatelessWidget {
                                 Expanded(
                                   child: OutlinedButton(
                                     onPressed: () async {
-                                      var user = await model.getUser!
-                                          .getIdTokenResult();
-                                      print(user);
+                                      getThemeManager(context).toggleDarkLightTheme();
                                     },
                                     child: Container(
                                       height: 48,
