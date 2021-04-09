@@ -38,8 +38,8 @@ class MobileLoginView extends StatelessWidget {
                 height: 12.0,
               ),
               InternationalPhoneNumberInput(
-                onInputChanged: (PhoneNumber number) => model.onNumberChanged(number),
-                onInputValidated: (bool value) => model.onInputValidated(value),
+                onInputChanged: (PhoneNumber number) =>{},
+                onInputValidated: (bool value) => {},
                 selectorConfig: SelectorConfig(
                   selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                   showFlags: false,

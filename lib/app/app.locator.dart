@@ -10,6 +10,8 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../services/mobile_auth.dart';
+
 final locator = StackedLocator.instance;
 
 void setupLocator() {
@@ -17,5 +19,6 @@ void setupLocator() {
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => SnackbarService());
+  locator.registerLazySingleton(() => MobileAuth());
   locator.registerSingleton(FirebaseAuthenticationService());
 }

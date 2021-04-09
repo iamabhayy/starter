@@ -26,14 +26,14 @@ class CodeVerificationView extends StatelessWidget {
                   children: [
                     TextSpan(text: 'Enter the OTP sent to'),
                     TextSpan(
-                      text: ' +91 8574999748',
+                      text: ' +91 ${model.mobileNumber}',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
               )
             ),
-            SizedBox(height: 12.0,),
+            SizedBox(height: 12.0),
             PinCodeTextField(
               length: 6,
               obscureText: false,
@@ -52,7 +52,7 @@ class CodeVerificationView extends StatelessWidget {
               onChanged: (value) => model.onCodeChange(value),
               appContext: context,
             ),
-            SizedBox(height: 12.0,),
+            SizedBox(height: 12.0),
             SizedBox(
               height: 48,
                width: double.infinity,

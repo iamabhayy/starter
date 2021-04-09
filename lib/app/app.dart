@@ -1,3 +1,4 @@
+import 'package:starter/services/mobile_auth.dart';
 import 'package:starter/views/home/home_view.dart';
 import 'package:starter/views/login/mobile/code_verification_view.dart';
 import 'package:starter/views/login/mobile/mobile_login_view.dart';
@@ -24,6 +25,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: BottomSheetService),
     LazySingleton(classType: DialogService),
     LazySingleton(classType: SnackbarService),
+    LazySingleton(classType: MobileAuth),
     Singleton(classType: FirebaseAuthenticationService),
   ],
 )

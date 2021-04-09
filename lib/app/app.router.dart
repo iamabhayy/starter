@@ -23,7 +23,6 @@ class Routes {
   static const String mobileLoginView = '/mobile-login-view';
   static const String codeVerificationView = '/code-verification-view';
   static const String homeView = '/home-view';
-  static const String accountView = '/account-view';
   static const all = <String>{
     startupView,
     onboardingView,
@@ -31,7 +30,6 @@ class Routes {
     mobileLoginView,
     codeVerificationView,
     homeView,
-    accountView,
   };
 }
 
@@ -87,7 +85,7 @@ class StackedRouter extends RouterBase {
         builder: (context) => HomeView(key: args.key),
         settings: data,
       );
-    }
+    },
   };
 }
 
