@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:starter/views/home/pages/page_one_view.dart';
 
+import 'pages/page_one_view.dart';
 import 'pages/profile/profile_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,11 +25,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text('GoogleNavBar'),
-      ),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: _pageList.elementAt(_selectedIndex),
       ),

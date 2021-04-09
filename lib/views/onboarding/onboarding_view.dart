@@ -5,7 +5,6 @@ import 'package:stacked/stacked.dart';
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StatelessWidget {
-
   final introKey = GlobalKey<IntroductionScreenState>();
 
   Widget _buildImage(String assetName) {
@@ -15,7 +14,6 @@ class OnboardingView extends StatelessWidget {
     );
   }
   
-
   @override
   Widget build(BuildContext context) {
     const bodyStyle = TextStyle(fontSize: 16.0);

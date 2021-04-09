@@ -12,16 +12,17 @@ class CodeVerificationView extends StatelessWidget {
  Widget build(BuildContext context) {
    return ViewModelBuilder<CodeVerificationViewModel>.reactive(
      builder: (context, model, child) => Scaffold(
-      appBar: AppBar(elevation: 0, iconTheme: IconThemeData(color: Colors.black), backgroundColor: Colors.transparent,),
+      appBar: AppBar(elevation: 0, iconTheme: Theme.of(context).iconTheme, backgroundColor: Colors.transparent,),
       body: Container(
         padding: EdgeInsets.only(left: 20.0, right: 20.0),
         child: Column(
           children: [
             ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text("OTP Verification",),
+              title: Text("Code verification", style: Theme.of(context).textTheme.headline5),
               subtitle: Text.rich(
                 TextSpan(
+                  style: Theme.of(context).textTheme.subtitle1,
                   children: [
                     TextSpan(text: 'Enter the OTP sent to'),
                     TextSpan(

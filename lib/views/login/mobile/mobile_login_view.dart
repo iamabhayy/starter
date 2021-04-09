@@ -15,7 +15,7 @@ class MobileLoginView extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: Theme.of(context).iconTheme,
       ),
       body: SafeArea(
         child: Container(
@@ -26,10 +26,12 @@ class MobileLoginView extends StatelessWidget {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(
-                  "Enter your Phone Number",
+                  "Enter your phone number",
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 subtitle: Text(
                   "We will send you the six digit verification code",
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
               SizedBox(

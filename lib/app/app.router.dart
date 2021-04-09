@@ -9,7 +9,6 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
-import '../views/account/account_view.dart';
 import '../views/home/home_view.dart';
 import '../views/login/login_view.dart';
 import '../views/login/mobile/code_verification_view.dart';
@@ -46,7 +45,6 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.mobileLoginView, page: MobileLoginView),
     RouteDef(Routes.codeVerificationView, page: CodeVerificationView),
     RouteDef(Routes.homeView, page: HomeView),
-    RouteDef(Routes.accountView, page: AccountView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -89,13 +87,7 @@ class StackedRouter extends RouterBase {
         builder: (context) => HomeView(key: args.key),
         settings: data,
       );
-    },
-    AccountView: (data) {
-      return MaterialPageRoute<dynamic>(
-        builder: (context) => AccountView(),
-        settings: data,
-      );
-    },
+    }
   };
 }
 

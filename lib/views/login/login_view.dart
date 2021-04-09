@@ -42,10 +42,7 @@ class LoginView extends StatelessWidget {
                               padding: const EdgeInsets.all(20.0),
                               child: Text(
                                 "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.",
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.black54,
-                                ),
+                                style: Theme.of(context).textTheme.bodyText2,
                                 textAlign: TextAlign.center,
                               ),
                             )
@@ -66,8 +63,7 @@ class LoginView extends StatelessWidget {
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 onPressed: () => model.mobileLogin(),
-                                style: TextButton.styleFrom(
-                                    backgroundColor: kPrimaryColor),
+                                style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
                               ),
                             ),
                             SizedBox(
@@ -138,7 +134,7 @@ class LoginView extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 20.0),
                               child: Text(
                                 "By signing up you agree to our term & policy",
-                                style: TextStyle(fontSize: 11),
+                                style: Theme.of(context).textTheme.caption,
                               ),
                             )
                           ],
