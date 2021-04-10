@@ -22,6 +22,7 @@ dependencies:
   firebase_auth: ^1.0.1
   google_sign_in: ^5.0.1
   twitter_login: ^3.0.4
+  firebase_messaging: ^9.1.1
 
   # Stacked packages for architecture
   stacked: ^2.0.2

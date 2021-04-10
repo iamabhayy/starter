@@ -18,7 +18,7 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  Map<String, String>? _localizedStrings = null;
+  Map<String, String>? _localizedStrings;
 
   Future<bool> load() async {
     // Load the language JSON file from the "lang" folder

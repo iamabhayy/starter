@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:stacked/stacked.dart';
-import 'package:starter/app_localizations.dart';
 
 import 'profile_viewmodel.dart';
 
