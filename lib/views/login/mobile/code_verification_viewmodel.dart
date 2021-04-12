@@ -10,8 +10,9 @@ class CodeVerificationViewModel extends BaseViewModel {
   final NavigationService navigator = locator<NavigationService>();
   final MobileAuth mauth = locator<MobileAuth>();
 
+  bool loading = false;
   String _code = '';
-  
+
   String get mobileNumber => mauth.phoneNumber;
 
   onCodeChange(String value) {
@@ -19,8 +20,6 @@ class CodeVerificationViewModel extends BaseViewModel {
   }
 
   verifyCode() async {
-    log(_code);
-    await mauth.signInWithCode(_code);
-    navigator.pushNamedAndRemoveUntil(Routes.homeView);
+    final result = await mauth.signInWithCode(_code);
   }
 }

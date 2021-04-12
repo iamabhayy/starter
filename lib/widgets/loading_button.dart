@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:starter/configs/constants.dart';
 
 class LoadingButton extends StatefulWidget {
+  const LoadingButton(
+      {Key? key,
+      required this.loading,
+      this.outline,
+      required this.child,
+      required this.loaderColor,
+      required this.onPressed, 
+      this.style}) : super(key: key);
+
   final bool loading;
   final bool? outline;
   final Widget child;
-  final Color? loaderColor;
-
-  LoadingButton({Key? key, required this.loading, this.outline, required this.child, this.loaderColor}): super(key: key);
+  final Color loaderColor;
+  final VoidCallback onPressed;
+  final ButtonStyle? style;
 
   @override
   _LoadingButtonState createState() => _LoadingButtonState();
@@ -21,10 +29,15 @@ class _LoadingButtonState extends State<LoadingButton> {
       height: 48,
       width: 140,
       child: TextButton(
-          style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
-          onPressed: () {},
-          child: (this.widget.loading)? SpinKitDoubleBounce(color: Colors.white, size: 28,) : this.widget.child,
-        ),
+        style: widget.style,
+        onPressed: (this.widget.loading) ? null : widget.onPressed,
+        child: (this.widget.loading)
+            ? SpinKitThreeBounce(
+                color: widget.loaderColor,
+                size: 28,
+              )
+            : this.widget.child,
+      ),
     );
   }
 }

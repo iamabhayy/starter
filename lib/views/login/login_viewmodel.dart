@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -37,6 +39,15 @@ class LoginViewModel extends BaseViewModel {
       navigator.pushNamedAndRemoveUntil(Routes.homeView);
     } else {
       log(authResult.errorMessage.toString());
+      Fluttertoast.showToast(
+        msg: authResult.errorMessage.toString(),
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 12.0
+      );
       notifyListeners();
     }
   }
