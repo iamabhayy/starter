@@ -1,55 +1,43 @@
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:starter/app/app.locator.dart';
 import 'package:starter/app/app.router.dart';
+import 'package:starter/configs/constants.dart';
 
 class LoginViewModel extends BaseViewModel {
-  final FirebaseAuthenticationService _auth =
-      locator<FirebaseAuthenticationService>();
+  final FirebaseAuthenticationService _auth = locator<FirebaseAuthenticationService>();
   final NavigationService navigator = locator<NavigationService>();
 
   User? get getUser => _auth.firebaseAuth.currentUser;
 
-  String? get getUserName =>
-      (getUser != null) ? getUser!.displayName : "to Study Hunt!";
-
-  void signInWithGoogle() async {
-    try {
-      await _auth.signInWithGoogle();
-      navigator.pushNamedAndRemoveUntil(Routes.homeView);
-    } catch (e) {
-      print(e);
-    }
+  void useFacebookAuthentication() async {
+    log("Facebook auth not implimented yet");
   }
 
-  void signInWithFacebook() async {
-    try {} catch (e) {
-      print(e);
-    }
+  Future<void> useGoogleAuthentication() async {
+    final result = await _auth.signInWithGoogle();
+    _handleAuthenticationResponse(result);
   }
 
-  void signInWithApple() async {
-    try {
-      final bool isApple = await _auth.isAppleSignInAvailable();
-
-      if (isApple) {
-        await _auth.signInWithApple();
-      } else {
-        print("Apple sigin is not config");
-      }
-
-      notifyListeners();
-    } catch (e) {
-      print(e);
-    }
+  Future<void> useAppleAuthentication() async {
+    final result = await _auth.signInWithApple(
+      appleClientId: APPLE_CLIENT_ID,
+      appleRedirectUri: APPLE_REDIRECT_URL,
+    );
+    _handleAuthenticationResponse(result);
   }
 
   void mobileLogin() => navigator.navigateTo(Routes.mobileLoginView);
 
-  void logOut() async {
-    await _auth.logout();
-    notifyListeners();
+  void _handleAuthenticationResponse(FirebaseAuthenticationResult authResult) {
+    if (!authResult.hasError) {
+      navigator.pushNamedAndRemoveUntil(Routes.homeView);
+    } else {
+      log(authResult.errorMessage.toString());
+      notifyListeners();
+    }
   }
 }

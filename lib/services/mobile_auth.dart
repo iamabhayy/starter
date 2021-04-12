@@ -1,11 +1,14 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:starter/app/app.locator.dart';
 
 class MobileAuth {
   var phoneNumber;
   var verifId;
 
   final auth = FirebaseAuth.instance;
+  final NavigationService navigator = locator<NavigationService>();
 
   Future verifyPhoneNumber() async {
     FirebaseAuth.instance.verifyPhoneNumber(
@@ -38,6 +41,6 @@ class MobileAuth {
   Future<UserCredential> signInWithCode(smsCode) async {
     AuthCredential credential = PhoneAuthProvider.credential(verificationId: this.verifId, smsCode: smsCode);
     // Sign the user in (or link) with the credential
-    return auth.signInWithCredential(credential);
+    return await auth.signInWithCredential(credential);
   }
 }

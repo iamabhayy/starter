@@ -21,7 +21,8 @@ class MobileLoginViewModel extends BaseViewModel {
     try {
       log(this.controller.text);
       mauth.phoneNumber = this.controller.text;
-      await mauth.verifyPhoneNumber();
+      final result = await mauth.verifyPhoneNumber();
+      log(result.toString());
       navigator.navigateTo(Routes.codeVerificationView);
     } catch (e) {
       log(e.toString());

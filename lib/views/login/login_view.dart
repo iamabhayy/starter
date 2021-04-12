@@ -34,7 +34,7 @@ class LoginView extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Welcome ${model.getUserName}',
+                              'Welcome to Study Hunt',
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.w600),
                             ),
@@ -70,7 +70,7 @@ class LoginView extends StatelessWidget {
                               height: 8.0,
                             ),
                             OutlinedButton(
-                              onPressed: () => model.signInWithGoogle(),
+                              onPressed: () => model.useGoogleAuthentication(),
                               child: Container(
                                 height: 48,
                                 child: Row(
@@ -117,7 +117,7 @@ class LoginView extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: OutlinedButton(
-                                    onPressed: () => model.signInWithApple(),
+                                    onPressed: () => model.useAppleAuthentication(),
                                     child: Container(
                                         height: 48,
                                         child: Center(
