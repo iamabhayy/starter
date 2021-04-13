@@ -1,64 +1,53 @@
-import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:observable_ish/observable_ish.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:starter/app/app.locator.dart';
-import 'package:starter/app/app.router.dart';
 
-class MobileAuth {
+class MobileAuth with ReactiveServiceMixin {
+  MobileAuth() {
+    listenToReactiveValues([_isBusy]);
+  }
+
   var phoneNumber;
   var verifId;
+  RxValue<bool> _isBusy = RxValue<bool>(false);
 
   final auth = FirebaseAuth.instance;
   final NavigationService navigator = locator<NavigationService>();
 
-  Future verifyPhoneNumber() async {
-    FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: '+91' + this.phoneNumber,
-      verificationCompleted: _verified,
-      verificationFailed: _verificationFailed,
-      codeSent: _codeSent,
-      codeAutoRetrievalTimeout: _onTimeOut,
+  void setBusy(bool state) {
+    this._isBusy.value = state;
+    notifyListeners();
+  }
+
+  bool get isBusy => this._isBusy.value;
+
+  Future<void> verifyPhoneNumber({
+    required String phoneNumber,
+    required PhoneVerificationCompleted verificationCompleted,
+    required PhoneVerificationFailed verificationFailed,
+    required PhoneCodeSent codeSent,
+    required PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout,
+  }) async {
+    this.phoneNumber = phoneNumber;
+    setBusy(true);
+    auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: verificationCompleted,
+      verificationFailed: verificationFailed,
+      codeSent: codeSent,
+      codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
     );
   }
 
-  void _verified(PhoneAuthCredential credential) async {
-    await auth.signInWithCredential(credential);
-    navigator.navigateTo(Routes.homeView);
+  Future<UserCredential> signInWithCredential(AuthCredential credential) async {
+    return await auth.signInWithCredential(credential);
   }
 
-  void _verificationFailed(FirebaseAuthException e) {
-    if (e.code == 'invalid-phone-number') {
-      print('The provided phone number is not valid.');
-    }
-  }
-
-  void _codeSent(String verificationId, int? resendToken) {
-    this.verifId = verificationId;
-    navigator.navigateTo(Routes.codeVerificationView);
-  }
-
-  void _onTimeOut(String verificationId) {
-    log(verificationId);
-  }
-
-  Future signInWithCode(smsCode) async {
-    try {
-      AuthCredential credential = PhoneAuthProvider.credential(verificationId: this.verifId, smsCode: smsCode);
-      // Sign the user in (or link) with the credential
-      await auth.signInWithCredential(credential);
-      navigator.navigateTo(Routes.homeView);
-    } catch (e) {
-      Fluttertoast.showToast(
-        msg: e.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 12.0
-      );
-    }
+  Future<UserCredential> signInWithCode(smsCode) async {
+    AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: this.verifId, smsCode: smsCode);
+    return await signInWithCredential(credential);
   }
 }

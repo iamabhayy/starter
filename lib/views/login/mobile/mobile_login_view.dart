@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:stacked/stacked.dart';
 import 'package:starter/configs/constants.dart';
+import 'package:starter/widgets/loading_button.dart';
 
 import 'mobile_login_viewmodel.dart';
 
@@ -68,11 +69,12 @@ class MobileLoginView extends StatelessWidget {
               SizedBox(
                 height: 48,
                  width: double.infinity,
-                child: TextButton(
-                  child: Text("SEND VERIFICATION CODE", style: TextStyle(color: Colors.white),),
-                  onPressed: () => model.sendVerificationCode(),
-                  style: ElevatedButton.styleFrom(primary: kPrimaryColor),
-                ),
+                child: LoadingButton(
+                  loading: model.lodaing, 
+                  child: Text("SEND VERIFICATION CODE", style: TextStyle(color: Colors.white)), 
+                  style: TextButton.styleFrom(backgroundColor: kPrimaryColor),
+                  loaderColor: Colors.white, 
+                  onPressed: ()=> (model.lodaing)? null : model.sendVerificationCode()),
               ),
             ],
           ),
