@@ -14,6 +14,8 @@ import '../views/login/login_view.dart';
 import '../views/login/mobile/code_verification_view.dart';
 import '../views/login/mobile/mobile_login_view.dart';
 import '../views/onboarding/onboarding_view.dart';
+import '../views/profile/help_view.dart';
+import '../views/profile/setting_view.dart';
 import '../views/startup/startup_view.dart';
 
 class Routes {
@@ -23,6 +25,8 @@ class Routes {
   static const String mobileLoginView = '/mobile-login-view';
   static const String codeVerificationView = '/code-verification-view';
   static const String homeView = '/home-view';
+  static const String settingView = '/setting-view';
+  static const String helpView = '/help-view';
   static const all = <String>{
     startupView,
     onboardingView,
@@ -30,6 +34,8 @@ class Routes {
     mobileLoginView,
     codeVerificationView,
     homeView,
+    settingView,
+    helpView,
   };
 }
 
@@ -43,6 +49,8 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.mobileLoginView, page: MobileLoginView),
     RouteDef(Routes.codeVerificationView, page: CodeVerificationView),
     RouteDef(Routes.homeView, page: HomeView),
+    RouteDef(Routes.settingView, page: SettingView),
+    RouteDef(Routes.helpView, page: HelpView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -83,6 +91,18 @@ class StackedRouter extends RouterBase {
       );
       return MaterialPageRoute<dynamic>(
         builder: (context) => HomeView(key: args.key),
+        settings: data,
+      );
+    },
+    SettingView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SettingView(),
+        settings: data,
+      );
+    },
+    HelpView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const HelpView(),
         settings: data,
       );
     },

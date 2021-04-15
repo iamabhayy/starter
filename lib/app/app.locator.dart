@@ -9,6 +9,7 @@
 import 'package:stacked/stacked.dart';
 import 'package:stacked_firebase_auth/stacked_firebase_auth.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_themes/stacked_themes.dart';
 
 import '../services/mobile_auth.dart';
 import '../services/push_notification_service.dart';
@@ -22,5 +23,6 @@ void setupLocator() {
   locator.registerLazySingleton(() => SnackbarService());
   locator.registerLazySingleton(() => MobileAuth());
   locator.registerLazySingleton(() => PushNotificationService());
+  locator.registerLazySingleton(() => ThemeService.getInstance());
   locator.registerSingleton(FirebaseAuthenticationService());
 }

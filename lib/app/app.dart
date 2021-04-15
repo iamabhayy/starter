@@ -1,9 +1,12 @@
+import 'package:stacked_themes/stacked_themes.dart';
 import 'package:starter/services/mobile_auth.dart';
 import 'package:starter/services/push_notification_service.dart';
 import 'package:starter/views/home/home_view.dart';
 import 'package:starter/views/login/mobile/code_verification_view.dart';
 import 'package:starter/views/login/mobile/mobile_login_view.dart';
 import 'package:starter/views/onboarding/onboarding_view.dart';
+import 'package:starter/views/profile/help_view.dart';
+import 'package:starter/views/profile/setting_view.dart';
 import 'package:starter/views/startup/startup_view.dart';
 import 'package:starter/views/login/login_view.dart';
 
@@ -19,6 +22,9 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: MobileLoginView),
     MaterialRoute(page: CodeVerificationView),
     MaterialRoute(page: HomeView),
+
+    MaterialRoute(page: SettingView),
+    MaterialRoute(page: HelpView),
   ],
   
   dependencies: [
@@ -28,6 +34,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: SnackbarService),
     LazySingleton(classType: MobileAuth),
     LazySingleton(classType: PushNotificationService),
+    LazySingleton(classType: ThemeService),
     Singleton(classType: FirebaseAuthenticationService),
   ],
 )
