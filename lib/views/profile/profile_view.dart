@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:stacked/stacked.dart';
 
 import 'profile_viewmodel.dart';
-import 'package:starter/widgets/icon_button.dart';
+import 'package:starter/widgets/social_buttons.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -26,9 +25,10 @@ class ProfileView extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.all(16.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Card(
+                  margin: EdgeInsets.all(0),
                   elevation: 0,
                   color: Colors.grey.shade300,
                   child: Column(
@@ -44,21 +44,21 @@ class ProfileView extends StatelessWidget {
                               width: 48,
                             )),
                         trailing: Icon(Icons.chevron_right),
-                        title: Text('Elliot Thomson'),
+                        title: Text('Welcome!', style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600),),
+                        subtitle: Text('Elliot Thomson', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                        onTap: () {},
+                      ),
+                      Divider(height: 0),
+                      ListTile(
+                        trailing: Icon(Icons.chevron_right),
+                        title: Text('Email'.toUpperCase(), style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),),
                         subtitle: Text('eleiot@gmail.com'),
                         onTap: () {},
                       ),
                       Divider(height: 0),
                       ListTile(
                         trailing: Icon(Icons.chevron_right),
-                        title: Text('Email'),
-                        subtitle: Text('eleiot@gmail.com'),
-                        onTap: () {},
-                      ),
-                      Divider(height: 0),
-                      ListTile(
-                        trailing: Icon(Icons.chevron_right),
-                        title: Text('Phone number'),
+                        title: Text('Phone Number'.toUpperCase(), style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),),
                         subtitle: Text('+91 8574999748'),
                         onTap: () {},
                       ),
@@ -143,71 +143,17 @@ class ProfileView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text('+91 8574999748')
+                    Text('+91 8574999748', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),)
                   ],
                 ),
                 SizedBox(
                   height: 26.0,
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GFIconButton(
-                      size: GFSize.SMALL,
-                      color: Colors.grey,
-                      type: GFButtonType.outline,
-                      icon: Icon(FontAwesomeIcons.facebookF, color: Colors.blue,),
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 6.0,
-                    ),
-                    GFIconButton(
-                      size: GFSize.SMALL,
-                      color: Colors.grey,
-                      type: GFButtonType.outline,
-                      icon: Icon(FontAwesomeIcons.instagram, color: Colors.redAccent,),
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 6.0,
-                    ),
-                    GFIconButton(
-                      size: GFSize.SMALL,
-                      type: GFButtonType.outline,
-                      color: Colors.grey,
-                      icon: Icon(
-                        FontAwesomeIcons.pinterest,
-                        color: Colors.red,
-                      ),
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 6.0,
-                    ),
-                    GFIconButton(
-                      size: GFSize.SMALL,
-                      type: GFButtonType.outline,
-                      color: Colors.grey,
-                      icon: Icon(
-                        FontAwesomeIcons.twitter,
-                        color: Colors.blue.shade500,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
+                SocialButtons(),
                 SizedBox(
                   height: 16.0,
                 ),
-                Container(
-                  child: Text(
-                    '© OSIZONE',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.left,
-                  ),
-                ),
+                Text('© OSIZONE', style: TextStyle(fontWeight: FontWeight.w600)),
                 SizedBox(height: 68.0)
               ],
             ),
